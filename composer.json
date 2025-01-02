@@ -1,0 +1,55 @@
+{
+    "name": "spyck/conversion-bundle",
+    "description": "Conversion Bundle for Symfony",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Willem Verspyck",
+            "email": "willemverspyck@outlook.com",
+            "homepage": "https://verspyck.com",
+            "role": "Developer"
+        }
+    ],
+    "keywords": [
+        "dashboard",
+        "database",
+        "doctrine",
+        "php",
+        "conversion",
+        "goal"
+    ],
+    "homepage": "https://github.com/willemverspyck/conversion-bundle",
+    "type": "library",
+    "require": {
+        "php": "^8.2",
+        "doctrine/collections": "^2",
+        "doctrine/common": "^3",
+        "doctrine/doctrine-bundle": "^2",
+        "doctrine/orm": "^2|^3",
+        "doctrine/persistence": "^3",
+        "symfony/config": "^6|^7",
+        "symfony/console": "^6|^7",
+        "symfony/dependency-injection": "^6|^7",
+        "symfony/doctrine-bridge": "^6|^7",
+        "symfony/framework-bundle": "^6|^7",
+        "symfony/messenger": "^6|^7",
+        "symfony/http-kernel": "^6|^7",
+        "symfony/service-contracts": "^6|^7"
+    },
+    "require-dev": {
+        "escapestudios/symfony2-coding-standard": "^3",
+        "friendsofphp/php-cs-fixer": "^3",
+        "phpunit/phpunit": "^10",
+        "squizlabs/php_codesniffer": "^3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Spyck\\ConversionBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Spyck\\ConversionBundle\\Tests\\": "tests/"
+        }
+    }
+}

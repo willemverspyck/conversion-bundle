@@ -1,0 +1,18 @@
+# Composer
+/vendor
+
+# Symfony
+/bin/*
+!/bin/console
+
+# PHP CS
+/.php-cs.cache
+
+# PHP CS Fixer
+/.php-cs-fixer.cache
+
+# PHP Unit
+/.phpunit.cache
+
+# PHP Storm
+/.idea
