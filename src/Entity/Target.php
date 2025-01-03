@@ -23,8 +23,8 @@ class Target implements Stringable, TimestampInterface
     #[Doctrine\JoinColumn(name: 'goal_id', referencedColumnName: 'id', nullable: false)]
     private Goal $goal;
 
-    #[Doctrine\Column(name: 'name', type: Types::STRING, length: 128, nullable: true)]
-    private ?string $name = null;
+    #[Doctrine\Column(name: 'name', type: Types::STRING, length: 128)]
+    private string $name;
 
     #[Doctrine\Column(name: 'variables', type: Types::JSON)]
     private array $variables;
@@ -55,12 +55,12 @@ class Target implements Stringable, TimestampInterface
         return $this;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function setName(?string $name): self
+    public function setName(string $name): self
     {
         $this->name = $name;
 
@@ -117,12 +117,6 @@ class Target implements Stringable, TimestampInterface
 
     public function __toString(): string
     {
-        $name = $this->getName();
-
-        if (null === $name) {
-            return sprintf('%d', $this->getId());
-        }
-
-        return $name;
+        return $this->getName();
     }
 }
