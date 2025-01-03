@@ -117,6 +117,12 @@ class Target implements Stringable, TimestampInterface
 
     public function __toString(): string
     {
-        return sprintf('%d', $this->getId());
+        $name = $this->getName();
+
+        if (null === $name) {
+            return sprintf('%d', $this->getId());
+        }
+
+        return $name;
     }
 }
