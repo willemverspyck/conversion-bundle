@@ -23,6 +23,8 @@ use Symfony\Component\Messenger\MessageBusInterface;
 
 readonly class GoalService
 {
+    private const array FIELDS = ['date', 'status', 'timestamp_created', 'timestamp_updated'];
+
     /**
      * @param Countable&IteratorAggregate $goals
      */
@@ -72,7 +74,9 @@ readonly class GoalService
                 $date = $row[$field];
 
                 if (null !== $date) {
-                    $fields = $this->databaseService->getFields($entity);
+                    $fields = array_filter($this->databaseService->getFields($entity), function (string $field): bool {
+                        return false === in_array($field, self::FIELDS, true);
+                    });
 
                     $fieldsData = [];
 
@@ -86,7 +90,7 @@ readonly class GoalService
                 }
             }
 
-            if (false === $goalInstance->hasInterval()) {
+            if (null === $goalInstance->getInterval()) {
                 $this->databaseService->deleteStatus($table, $target);
             }
         }
@@ -116,7 +120,7 @@ readonly class GoalService
             return $goal->getDateMin();
         }
 
-        return $goal->getDateMax()->modify(sprintf('%d days ago', 100));
+        return $goal->getDateMax();
     }
 
     /**

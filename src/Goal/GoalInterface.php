@@ -13,31 +13,14 @@ use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 interface GoalInterface
 {
     /**
-     * If the goals are calculated with interval (or all data).
-     */
-    public function hasInterval(): bool;
-
-    /**
      * Get date.
      */
-    public function getDate(): string;
+    public function getDate(): DateTimeInterface;
 
     /**
      * Set date.
      */
     public function setDate(DateTimeInterface $date): void;
-
-    /**
-     * Get targets.
-     *
-     * @return Collection<int, Target>
-     */
-    public function getTargets(): Collection;
-
-    /**
-     * Set targets.
-     */
-    public function setTargets(Collection $targets): void;
 
     /**
      * Get data.
@@ -50,9 +33,26 @@ interface GoalInterface
     public function getEntity(): string;
 
     /**
+     * If the goals are calculated with interval (or all data).
+     */
+    public function getInterval(): ?int;
+
+    /**
      * Get parameters.
      *
      * @return array<int, ParameterInterface>
      */
     public function getParameters(): iterable;
+
+    /**
+     * Get targets.
+     *
+     * @return Collection<int, Target>
+     */
+    public function getTargets(): Collection;
+
+    /**
+     * Set targets.
+     */
+    public function setTargets(Collection $targets): void;
 }

@@ -1,6 +1,6 @@
 # Conversion Bundle
 
-Symfony bundle to create dashboards with widgets. 
+Symfony bundle for conversions. 
 
 ## Requirements
 PHP ^8.2

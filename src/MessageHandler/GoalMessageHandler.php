@@ -13,9 +13,9 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\Messenger\Exception\UnrecoverableMessageHandlingException;
 
 #[AsMessageHandler]
-final class GoalMessageHandler extends AbstractMessageHandler
+final readonly class GoalMessageHandler
 {
-    public function __construct(private readonly GoalRepository $goalRepository, private readonly GoalService $goalService)
+    public function __construct(private GoalRepository $goalRepository, private GoalService $goalService)
     {
     }
 

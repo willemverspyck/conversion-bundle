@@ -13,19 +13,24 @@ abstract class AbstractGoal implements GoalInterface
     private DateTimeInterface $date;
     private Collection $targets;
 
+    public function getDate(): DateTimeInterface
+    {
+        return $this->date;
+    }
+
     public function setDate(DateTimeInterface $date): void
     {
         $this->date = $date;
     }
 
-    public function getDate(): string
+    public function getInterval(): ?int
     {
-        return $this->date->format('Y-m-d');
+        return null;
     }
 
-    public function hasInterval(): bool
+    public function getParameters(): iterable
     {
-        return true;
+        return [];
     }
 
     public function setTargets(Collection $targets): void
@@ -39,10 +44,5 @@ abstract class AbstractGoal implements GoalInterface
     public function getTargets(): Collection
     {
         return $this->targets;
-    }
-
-    public function getParameters(): iterable
-    {
-        return [];
     }
 }

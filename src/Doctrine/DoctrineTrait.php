@@ -6,8 +6,6 @@ namespace Spyck\ConversionBundle\Doctrine;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
-use Spyck\VisualizationBundle\Parameter\DateParameterInterface;
-use Spyck\VisualizationBundle\Parameter\EntityParameterInterface;
 use Symfony\Contracts\Service\Attribute\Required;
 
 trait DoctrineTrait
@@ -34,16 +32,6 @@ trait DoctrineTrait
         if (false === $autowire) {
             return $queryBuilder;
         }
-
-        //        foreach ($this->getParameterData() as $parameter) {
-        //            if ($parameter instanceof DateParameterInterface) {
-        //                $queryBuilder->setParameter($parameter->getName(), $parameter->getDataForQueryBuilder());
-        //            }
-        //
-        //            if ($parameter instanceof EntityParameterInterface) {
-        //                $queryBuilder->setParameter($parameter->getName(), $parameter->getData());
-        //            }
-        //        }
 
         return $queryBuilder;
     }
