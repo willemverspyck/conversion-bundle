@@ -32,6 +32,16 @@ class GoalRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
+    public function getGoals(): array
+    {
+        return $this->createQueryBuilder('goal')
+            ->addSelect('target')
+            ->innerJoin('goal.targets', 'target')
+            ->where('goal.active = TRUE')
+            ->getQuery()
+            ->getResult();
+    }
+
     /**
      * Get all goals.
      *

@@ -42,12 +42,10 @@ final class GoalCommand extends Command
         $type = $input->getOption('type');
 
         if (null === $type) {
-            $output->writeln('Type not found');
-
-            return Command::FAILURE;
+            $goals = $this->goalRepository->getGoals();
+        } else {
+            $goals = $this->goalRepository->getGoalsByType($type);
         }
-
-        $goals = $this->goalRepository->getGoalsByType($type);
 
         foreach ($goals as $goal) {
             $this->goalService->executeGoalAsMessage($goal);
