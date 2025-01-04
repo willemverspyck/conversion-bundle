@@ -156,6 +156,13 @@ class Goal implements Stringable, TimestampInterface
         $this->targets->removeElement($target);
     }
 
+    public function __clone()
+    {
+        $this->id = null;
+
+        $this->setName(sprintf('%s (Copy)', $this->getName()));
+    }
+
     public function __toString(): string
     {
         return $this->getName();
