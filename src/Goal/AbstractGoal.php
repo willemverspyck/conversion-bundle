@@ -4,23 +4,20 @@ declare(strict_types=1);
 
 namespace Spyck\ConversionBundle\Goal;
 
-use DateTimeInterface;
-use Doctrine\Common\Collections\Collection;
-use Spyck\ConversionBundle\Entity\Target;
+use Spyck\ConversionBundle\Entity\Goal;
 
 abstract class AbstractGoal implements GoalInterface
 {
-    private DateTimeInterface $date;
-    private Collection $targets;
+    private Goal $goal;
 
-    public function getDate(): DateTimeInterface
+    public function getGoal(): Goal
     {
-        return $this->date;
+        return $this->goal;
     }
 
-    public function setDate(DateTimeInterface $date): void
+    public function setGoal(Goal $goal): void
     {
-        $this->date = $date;
+        $this->goal = $goal;
     }
 
     public function getInterval(): ?int
@@ -31,18 +28,5 @@ abstract class AbstractGoal implements GoalInterface
     public function getParameters(): iterable
     {
         return [];
-    }
-
-    public function setTargets(Collection $targets): void
-    {
-        $this->targets = $targets;
-    }
-
-    /**
-     * @return Collection<int, Target>
-     */
-    public function getTargets(): Collection
-    {
-        return $this->targets;
     }
 }

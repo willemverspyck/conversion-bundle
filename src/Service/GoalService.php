@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace Spyck\ConversionBundle\Service;
 
 use Countable;
-use DateMalformedStringException;
 use DateTimeImmutable;
-use DateTimeInterface;
 use Doctrine\DBAL\Exception as DBALException;
 use Exception;
 use IteratorAggregate;
@@ -52,11 +50,8 @@ readonly class GoalService
      */
     public function executeGoal(Goal $goal): void
     {
-        $date = $this->getDate($goal);
-
         $goalInstance = $this->getGoal($goal->getAdapter());
-        $goalInstance->setDate($date);
-        $goalInstance->setTargets($goal->getTargets());
+        $goalInstance->setGoal($goal);
 
         $data = $goalInstance->getData();
         $entity = $goalInstance->getEntity();
@@ -109,18 +104,6 @@ readonly class GoalService
         $goalMessage->setId($goal->getId());
 
         $this->messageBus->dispatch($goalMessage);
-    }
-
-    /**
-     * @throws DateMalformedStringException
-     */
-    private function getDate(Goal $goal): DateTimeInterface
-    {
-        if (null === $goal->getDateMax()) {
-            return $goal->getDateMin();
-        }
-
-        return $goal->getDateMax();
     }
 
     /**
