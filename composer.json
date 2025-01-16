@@ -24,7 +24,7 @@
         "doctrine/collections": "^2",
         "doctrine/doctrine-bundle": "^2",
         "doctrine/orm": "^2|^3",
-        "doctrine/persistence": "^3",
+        "doctrine/persistence": "^3|^4",
         "symfony/config": "^6|^7",
         "symfony/console": "^6|^7",
         "symfony/dependency-injection": "^6|^7",
