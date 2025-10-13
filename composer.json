@@ -22,7 +22,7 @@
     "require": {
         "php": "^8.2",
         "doctrine/collections": "^2",
-        "doctrine/doctrine-bundle": "^2",
+        "doctrine/doctrine-bundle": "^2|^3",
         "doctrine/orm": "^2|^3",
         "doctrine/persistence": "^3|^4",
         "symfony/config": "^6|^7",
