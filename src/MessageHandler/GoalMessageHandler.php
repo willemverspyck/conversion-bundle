@@ -12,7 +12,7 @@ use Spyck\ConversionBundle\Service\GoalService;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\Messenger\Exception\UnrecoverableMessageHandlingException;
 
-#[AsMessageHandler]
+#[AsMessageHandler(sign: true)]
 final readonly class GoalMessageHandler
 {
     public function __construct(private GoalRepository $goalRepository, private GoalService $goalService)
