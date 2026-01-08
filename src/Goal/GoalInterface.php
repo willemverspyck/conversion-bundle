@@ -11,6 +11,8 @@ use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 #[Autoconfigure(tags: ['spyck.conversion.goal'])]
 interface GoalInterface
 {
+    public static function getName(): string;
+
     public function getGoal(): Goal;
 
     public function setGoal(Goal $goal): void;
@@ -22,7 +24,7 @@ interface GoalInterface
     public function getInterval(): ?int;
 
     /**
-     * @return array<int, ParameterInterface>
+     * @return list<ParameterInterface>
      */
     public function getParameters(): iterable;
 }

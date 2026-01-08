@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace Spyck\ConversionBundle\Service;
 
-use Countable;
 use DateTimeImmutable;
 use Doctrine\DBAL\Exception as DBALException;
 use Exception;
-use IteratorAggregate;
 use Spyck\ConversionBundle\Entity\Goal;
 use Spyck\ConversionBundle\Entity\Target;
 use Spyck\ConversionBundle\Goal\GoalInterface;
 use Spyck\ConversionBundle\Message\GoalMessage;
 use Spyck\ConversionBundle\Repository\GoalRepository;
 use Spyck\ConversionBundle\Utility\ArrayUtility;
-use Symfony\Component\DependencyInjection\Attribute\AutowireIterator;
+use Symfony\Component\DependencyInjection\Attribute\AutowireLocator;
+use Symfony\Component\DependencyInjection\ServiceLocator;
 use Symfony\Component\Messenger\Exception\ExceptionInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 
@@ -23,10 +22,7 @@ readonly class GoalService
 {
     private const array FIELDS = ['date', 'status', 'timestamp_created', 'timestamp_updated'];
 
-    /**
-     * @param Countable&IteratorAggregate $goals
-     */
-    public function __construct(private DatabaseService $databaseService, private GoalRepository $goalRepository, private MessageBusInterface $messageBus, #[AutowireIterator(tag: 'spyck.conversion.goal')] private iterable $goals)
+    public function __construct(private DatabaseService $databaseService, private GoalRepository $goalRepository, private MessageBusInterface $messageBus, #[AutowireLocator(services: 'spyck.conversion.goal', defaultIndexMethod: 'getName')] private ServiceLocator $serviceLocator)
     {
     }
 
@@ -35,13 +31,7 @@ readonly class GoalService
      */
     public function getGoal(string $name): GoalInterface
     {
-        foreach ($this->goals->getIterator() as $goal) {
-            if (get_class($goal) === $name) {
-                return $goal;
-            }
-        }
-
-        throw new Exception(sprintf('Goal "%s" not found', $name));
+        return $this->serviceLocator->get($name);
     }
 
     /**
