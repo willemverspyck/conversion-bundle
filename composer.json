@@ -21,7 +21,7 @@
     "type": "library",
     "require": {
         "php": "^8.4",
-        "doctrine/collections": "^2",
+        "doctrine/collections": "^2|^3",
         "doctrine/doctrine-bundle": "^3",
         "doctrine/orm": "^3",
         "doctrine/persistence": "^4",
