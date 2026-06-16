@@ -10,11 +10,6 @@ abstract class AbstractGoal implements GoalInterface
 {
     private Goal $goal;
 
-    public static function getName(): string
-    {
-        return static::class;
-    }
-
     public function getGoal(): Goal
     {
         return $this->goal;

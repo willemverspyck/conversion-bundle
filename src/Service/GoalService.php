@@ -22,7 +22,7 @@ readonly class GoalService
 {
     private const array FIELDS = ['date', 'status', 'timestamp_created', 'timestamp_updated'];
 
-    public function __construct(private DatabaseService $databaseService, private GoalRepository $goalRepository, private MessageBusInterface $messageBus, #[AutowireLocator(services: 'spyck.conversion.goal', defaultIndexMethod: 'getName')] private ServiceLocator $serviceLocator)
+    public function __construct(private DatabaseService $databaseService, private GoalRepository $goalRepository, private MessageBusInterface $messageBus, #[AutowireLocator(services: 'spyck.conversion.goal')] private ServiceLocator $serviceLocator)
     {
     }
 
